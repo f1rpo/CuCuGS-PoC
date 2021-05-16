@@ -496,6 +496,13 @@ CvInterface* CvGlobals::getInterfacePtr()
 	return m_interface;
 }
 
+// ccgs:
+void CvGlobals::simulateKeyPressed(byte ucVK)
+{
+	keybd_event(ucVK, 0, 0 /* key down */, 0);
+	keybd_event(ucVK, 0, KEYEVENTF_KEYUP, 0);
+}
+
 CvRandom& CvGlobals::getASyncRand()
 {
 	return *m_asyncRand;

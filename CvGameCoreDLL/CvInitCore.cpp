@@ -121,6 +121,7 @@ void CvInitCore::reset(GameMode eMode)
 	{
 		setDefaults();
 	}
+	m_bOnCustomGameScreen = false; // ccgs
 }
 
 void CvInitCore::setDefaults()
@@ -575,7 +576,8 @@ void CvInitCore::resetGame(CvInitCore * pSource, bool bClear, bool bSaveGameType
 		// Map-specific custom parameters
 		setCustomMapOptions(pSource->getNumCustomMapOptions(), pSource->getCustomMapOptions());
 		m_iNumHiddenCustomMapOptions = pSource->getNumHiddenCustomMapOptions();
-		setVictories(pSource->getNumVictories(), pSource->getVictories());
+		// ccgs: Was setVictories, which is reserved for DLL-external calls now.
+		setVictoriesInternal(pSource->getNumVictories(), pSource->getVictories());
 
 		// Standard game options
 		int i;
@@ -1033,8 +1035,23 @@ void CvInitCore::setCustomMapOption(int iOptionID, CustomMapOptionTypes eCustomM
 	}
 }
 
+// <ccgs>
+void CvInitCore::setVictories(int iNumVictories, const bool* abVictories)
+{
+	/*	Forward to a new function to prevent DLL-internal calls
+		from disrupting my Custom Game vs. Play Now detection. */
+	setVictoriesInternal(iNumVictories, abVictories);
+	if (iNumVictories > 0 && getType() == GAME_SP_NEW)
+	{
+		/*	The Custom Game screen calls setVictories before and after setActivePlayer,
+			the Play Now screen (leader selection) calls setVictories once:
+			after setActivePlayer. */
+		m_bOnCustomGameScreen = !m_bOnCustomGameScreen;
+	}
+}
 
-void CvInitCore::setVictories(int iNumVictories, const bool * abVictories)
+void CvInitCore::setVictoriesInternal( // </ccgs>
+	int iNumVictories, const bool* abVictories)
 {
 	clearVictories();
 	if (iNumVictories)
@@ -1148,6 +1165,13 @@ void CvInitCore::setActivePlayer(PlayerTypes eActivePlayer)
 	{
 		// Automatically claim this slot
 		setSlotClaim(m_eActivePlayer, SLOTCLAIM_ASSIGNED);
+		// <ccgs>
+		if (getType() == GAME_SP_NEW && m_bOnCustomGameScreen)
+		{
+			bool bSuccess = gDLL->getPythonIFace()->callFunction(
+					PYScreensModule, "showOptionsScreen");
+			FAssert(bSuccess);
+		} // </ccgs>
 	}
 }
 

@@ -30,6 +30,7 @@ public:
 	static CyGlobalContext& getInstance();		// singleton accessor
 
 	bool isDebugBuild() const;
+	void simulateReturnKeyPressed(); // ccgs
 	CyGame* getCyGame() const;
 	CyMap* getCyMap() const;
 	CyPlayer* getCyPlayer(int idx);

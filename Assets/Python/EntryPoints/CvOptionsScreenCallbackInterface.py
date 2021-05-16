@@ -485,5 +485,6 @@ def handleExitButtonInput ( argsList ):
 	
 	saveProfile()
 	getTabControl().destroy()
+	CyGlobalContext().simulateReturnKeyPressed() # ccgs
 	
 	return 1

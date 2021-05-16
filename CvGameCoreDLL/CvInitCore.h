@@ -287,6 +287,8 @@ protected:
 
 	void clearVictories();
 	void refreshVictories();
+	// ccgs:
+	void setVictoriesInternal(int iNumVictories, const bool* abVictories);
 
 	// ***
 	// CORE GAME INIT DATA
@@ -344,6 +346,9 @@ protected:
 	unsigned int m_uiMapRandSeed;
 	PlayerTypes m_eActivePlayer;
 	GameMode m_eMode;
+	/*	ccgs: (Caveat: Changing the memory layout of this class above this line
+		can lead to memory corruptions) */
+	bool m_bOnCustomGameScreen;
 
 	// Temp var so we don't return locally scoped var
 	mutable CvWString m_szTemp;
