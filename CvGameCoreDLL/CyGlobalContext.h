@@ -12,6 +12,7 @@
 #include "CvArtFileMgr.h"
 
 class CyGame;
+class CyInitCore; // ccgs
 class CyMap;
 class CyPlayer;
 class CvRandom;
@@ -31,6 +32,7 @@ public:
 
 	bool isDebugBuild() const;
 	void simulateReturnKeyPressed(); // ccgs
+	CyInitCore& getCyInitCore() const; // ccgs
 	CyGame* getCyGame() const;
 	CyMap* getCyMap() const;
 	CyPlayer* getCyPlayer(int idx);

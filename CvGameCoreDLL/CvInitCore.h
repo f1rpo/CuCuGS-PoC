@@ -111,8 +111,8 @@ public:
 	DllExport void setEra(const CvWString & szEra);
 	DllExport const CvWString & getEraKey(CvWString & szBuffer) const;
 
-	DllExport GameSpeedTypes getGameSpeed() const	{ return m_eGameSpeed; }
-	DllExport void setGameSpeed(GameSpeedTypes eGameSpeed)	{ m_eGameSpeed = eGameSpeed; }
+	DllExport GameSpeedTypes getGameSpeed() const	{ return m_eGameSpeed; } // ccgs: Exposed to Python
+	DllExport void setGameSpeed(GameSpeedTypes eGameSpeed); // ccgs: Exposed to Python
 	DllExport void setGameSpeed(const CvWString & szGameSpeed);
 	DllExport const CvWString & getGameSpeedKey(CvWString & szBuffer) const;
 

@@ -849,6 +849,12 @@ const CvWString & CvInitCore::getEraKey(CvWString & szBuffer) const
 	}
 }
 
+// ccgs: Definition moved out of header for easier debugging
+void CvInitCore::setGameSpeed(GameSpeedTypes eGameSpeed)
+{
+	m_eGameSpeed = eGameSpeed;
+}
+
 void CvInitCore::setGameSpeed(const CvWString & szGameSpeed)
 {
 	for (int i = 0; i < GC.getNumGameSpeedInfos(); i++)

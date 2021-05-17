@@ -11,6 +11,7 @@
 #include "CvGlobals.h"
 #include "CvPlayerAI.h"
 #include "CvGameAI.h"
+#include "CyInitCore.h"
 //#include "CvStructs.h"
 #include "CvInfos.h"
 #include "CyTeam.h"
@@ -47,6 +48,14 @@ void CyGlobalContext::simulateReturnKeyPressed()
 		but I don't know how to obtain the key code there. */
 	GC.simulateKeyPressed(VK_RETURN);
 }
+
+// ccgs:
+CyInitCore& CyGlobalContext::getCyInitCore() const
+{
+	static CyInitCore cyInitCore;
+	return cyInitCore;
+}
+
 
 CyGame* CyGlobalContext::getCyGame() const
 {
