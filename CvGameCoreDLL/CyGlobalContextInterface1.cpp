@@ -21,10 +21,8 @@ void CyGlobalContextPythonInterface1(python::class_<CyGlobalContext>& x)
 
 	x
 		.def("isDebugBuild", &CyGlobalContext::isDebugBuild, "() - returns true if running a debug build")
-		// <ccgs>
-		.def("simulateReturnKeyPressed", &CyGlobalContext::simulateReturnKeyPressed, "void ()")
+		// ccgs:
 		.def("getInitCore", &CyGlobalContext::getCyInitCore, python::return_value_policy<python::reference_existing_object>(), "() - CyInitCore()")
-		// </ccgs>
 		.def("getGame", &CyGlobalContext::getCyGame, python::return_value_policy<python::reference_existing_object>(), "() - CyGame()")
 		.def("getMap", &CyGlobalContext::getCyMap, python::return_value_policy<python::reference_existing_object>(), "() - CyMap()")
 		.def("getPlayer", &CyGlobalContext::getCyPlayer, python::return_value_policy<python::reference_existing_object>(), "(iPlayer) - iPlayer instance")

@@ -31,7 +31,6 @@ public:
 	static CyGlobalContext& getInstance();		// singleton accessor
 
 	bool isDebugBuild() const;
-	void simulateReturnKeyPressed(); // ccgs
 	CyInitCore& getCyInitCore() const; // ccgs
 	CyGame* getCyGame() const;
 	CyMap* getCyMap() const;

@@ -42,14 +42,6 @@ bool CyGlobalContext::isDebugBuild() const
 }
 
 // ccgs:
-void CyGlobalContext::simulateReturnKeyPressed()
-{
-	/*	I'd rather expose that function entirely to Python,
-		but I don't know how to obtain the key code there. */
-	GC.simulateKeyPressed(VK_RETURN);
-}
-
-// ccgs:
 CyInitCore& CyGlobalContext::getCyInitCore() const
 {
 	static CyInitCore cyInitCore;
