@@ -236,6 +236,9 @@
   <ItemGroup>
     <None Include="..\FVariableSystem.inl" />
     <None Include="..\interfaceDirtyBits.inl" />
+    <None Include="Makefile" />
+    <None Include="Makefile.project" />
+    <None Include="Makefile.settings" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3021AF0E-699D-4232-86F6-FC374A0C8957}</ProjectGuid>
