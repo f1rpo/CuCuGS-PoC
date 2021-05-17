@@ -16,6 +16,7 @@ import CvEspionageAdvisor
 import CvOptionsScreen
 import CvReplayScreen
 import CvHallOfFameScreen
+import CustomGameScreen # ccgs
 import CvDanQuayle
 import CvUnVictoryScreen
 
@@ -77,6 +78,12 @@ def showTechChooser():
 hallOfFameScreen = CvHallOfFameScreen.CvHallOfFameScreen(HALL_OF_FAME)
 def showHallOfFame(argsList):
 	hallOfFameScreen.interfaceScreen(argsList[0])
+
+# <ccgs>
+customGameScreen = CustomGameScreen.CustomGameScreen()
+def showCustomGameScreen():
+	if CyGame().getActivePlayer() != PlayerTypes.NO_PLAYER:
+		customGameScreen.interfaceScreen() # </ccgs>
 
 civicScreen = CvCivicsScreen.CvCivicsScreen()
 def showCivicsScreen():
@@ -882,6 +889,7 @@ HandleInputMap = {  MAIN_INTERFACE : mainInterface,
 					SPACE_SHIP_SCREEN : spaceShip,
 					INTRO_MOVIE_SCREEN : introMovie,
 					OPTIONS_SCREEN : optionsScreen,
+					CUSTOM_GAME_SCREEN : customGameScreen, # ccgs
 					INFO_SCREEN : infoScreen,
 					TECH_SPLASH : techSplashScreen,
 					REPLAY_SCREEN : replayScreen,

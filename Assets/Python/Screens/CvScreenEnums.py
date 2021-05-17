@@ -35,6 +35,8 @@ UN_SCREEN = 26
 ESPIONAGE_ADVISOR = 27
 SPACE_SHIP_SCREEN = 28
 CORPORATION_SCREEN = 29
+# ccgs: Leave a gap for IDs other mods might already use. I'm hardcoding this ID in the DLL (CvDLLWidgetData).
+CUSTOM_GAME_SCREEN = 33
 
 MAIN_INTERFACE = 99
 DEBUG_INFO_SCREEN = 100
