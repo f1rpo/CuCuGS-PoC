@@ -839,7 +839,18 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 
 	case WIDGET_ZOOM_CITY:
 		break;
-
+	// <ccgs>
+	case WIDGET_CLOSE_SCREEN:
+	{
+		// Check for ID of CustomGameScreen.py
+		if (widgetDataStruct.m_iData1 == 33)
+		{
+			for (int i = 0; i < widgetDataStruct.m_iData2; i++)
+				GC.simulateKeyPressed(VK_TAB);
+			GC.simulateKeyPressed(VK_RETURN);
+		}
+		break;
+	} // </ccgs>
 	case WIDGET_HELP_TECH_PREPREQ:
 	case WIDGET_HELP_OBSOLETE:
 	case WIDGET_HELP_OBSOLETE_BONUS:
@@ -890,7 +901,7 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 	case WIDGET_HELP_PROMOTION:
 	case WIDGET_LEADERHEAD:
 	case WIDGET_LEADER_LINE:
-	case WIDGET_CLOSE_SCREEN:
+	//case WIDGET_CLOSE_SCREEN:
 	case WIDGET_SCORE_BREAKDOWN:
 		//	Nothing on clicked
 		break;

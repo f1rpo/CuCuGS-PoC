@@ -1175,7 +1175,7 @@ void CvInitCore::setActivePlayer(PlayerTypes eActivePlayer)
 		if (getType() == GAME_SP_NEW && m_bOnCustomGameScreen)
 		{
 			bool bSuccess = gDLL->getPythonIFace()->callFunction(
-					PYScreensModule, "showOptionsScreen");
+					PYScreensModule, "showCustomGameScreen");
 			FAssert(bSuccess);
 		} // </ccgs>
 	}

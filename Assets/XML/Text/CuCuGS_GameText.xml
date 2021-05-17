@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ccgs -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+
+	<TEXT>
+		<Tag>TXT_KEY_CUCUGS_CLOSE</Tag>
+		<English>Use Original Screen</English>
+		<French>Use Original Screen</French>
+		<German>Use Original Screen</German>
+		<Italian>Use Original Screen</Italian>
+		<Spanish>Use Original Screen</Spanish>
+	</TEXT>
+
+</Civ4GameText>
