@@ -160,7 +160,9 @@ public:
 	DllExport CvStatsReporter* getStatsReporterPtr();
 	DllExport CvInterface& getInterface();
 	DllExport CvInterface* getInterfacePtr();
-	void simulateKeyPressed(byte ucVK); // ccgs
+	// <ccgs>
+	void simulateKeySequence(std::vector<byte> aucVK, bool bContinueSeq = false);
+	void simulateKeyPressed(byte ucVK); // </ccgs>
 	DllExport int getMaxCivPlayers() const;
 #ifdef _USRDLL
 	CvMap& getMapINLINE() { return *m_map; }				// inlined for perf reasons, do not use outside of dll

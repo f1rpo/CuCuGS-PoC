@@ -14,6 +14,7 @@
 #pragma warning( disable: 4530 )	// C++ exception handler used, but unwind semantics are not enabled
 
 #define WIN32_LEAN_AND_MEAN
+#define _WIN32_WINNT 0x0500 // ccgs: SendInput requires Win2000
 #include <windows.h>
 #include <MMSystem.h>
 #if defined _DEBUG && !defined USE_MEMMANAGER

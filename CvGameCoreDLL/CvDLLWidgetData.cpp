@@ -845,9 +845,11 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 		// Check for ID of CustomGameScreen.py
 		if (widgetDataStruct.m_iData1 == 33)
 		{
+			std::vector<byte> aucKeySeq;
 			for (int i = 0; i < widgetDataStruct.m_iData2; i++)
-				GC.simulateKeyPressed(VK_TAB);
-			GC.simulateKeyPressed(VK_RETURN);
+				aucKeySeq.push_back(VK_TAB);
+			aucKeySeq.push_back(VK_RETURN);
+			GC.simulateKeySequence(aucKeySeq);
 		}
 		break;
 	} // </ccgs>
