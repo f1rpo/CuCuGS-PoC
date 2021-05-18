@@ -19,6 +19,7 @@
 #include "CvPopupInfo.h"
 #include "FProfiler.h"
 #include "CvMessageControl.h"
+#include "InputSim.h" // ccgs
 
 CvDLLWidgetData* CvDLLWidgetData::m_pInst = NULL;
 
@@ -848,15 +849,15 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 			
 			switch(widgetDataStruct.m_iData2)
 			{
-			case 0: GC.simulateKeyPressed(VK_RETURN); break;
+			case 0: input_sim::simulateKeyPressed(VK_RETURN); break;
 			case 1:
 			{
 				std::vector<byte> aucKeySeq;
 				aucKeySeq.push_back(VK_TAB);
 				aucKeySeq.push_back(VK_RETURN);
-				GC.simulateKeySequence(aucKeySeq);
+				input_sim::simulateKeySequence(aucKeySeq);
 			}
-			case 2: GC.simulateMouseClicked(); break;
+			case 2: input_sim::simulateMouseClicked(); break;
 			}
 			
 		}

@@ -138,6 +138,7 @@
     <ClCompile Include="..\CyUnitInterface1.cpp" />
     <ClCompile Include="..\FAssert.cpp" />
     <ClCompile Include="..\FDialogTemplate.cpp" />
+    <ClCompile Include="..\InputSim.cpp" />
     <ClCompile Include="..\_precompile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +235,7 @@
     <ClInclude Include="..\FInputDevice.h" />
     <ClInclude Include="..\FProfiler.h" />
     <ClInclude Include="..\FVariableSystem.h" />
+    <ClInclude Include="..\InputSim.h" />
     <ClInclude Include="..\LinkedList.h" />
   </ItemGroup>
   <ItemGroup>

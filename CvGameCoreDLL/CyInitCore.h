@@ -4,9 +4,9 @@
 #define CY_INIT_CORE_H
 
 // ccgs: Adapter class for exposing CvInitCore functions to Python
-#include <boost/python/list.hpp>
-#include <boost/python/tuple.hpp>
-namespace python = boost::python;
+//#include <boost/python/list.hpp>
+//#include <boost/python/tuple.hpp>
+//namespace python = boost::python;
 
 class CyInitCore
 {
