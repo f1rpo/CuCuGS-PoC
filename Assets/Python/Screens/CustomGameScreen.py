@@ -45,7 +45,7 @@ class CustomGameScreen(GenericDecoratedScreen.GenericDecoratedScreen):
 				u"<font=4>" + localText.getText("TXT_KEY_MAIN_MENU_LAUNCH", ()).upper() + "</font>",
 				CvUtil.FONT_RIGHT_JUSTIFY, self.xExitButton, self.yExitButton, 0,
 				FontTypes.TITLE_FONT, WidgetTypes.WIDGET_CLOSE_SCREEN,
-				self.iScreenID, 0) # 0 TAB presses, then Enter.
+				self.iScreenID, 0) # 0 for Launch through Return key
 		screen.setActivation(self.EXIT_ID, ActivationTypes.ACTIVATE_NORMAL)
 		GOBACK_ID = "GoBackButton"
 		xGoBackButton = 130
@@ -53,7 +53,9 @@ class CustomGameScreen(GenericDecoratedScreen.GenericDecoratedScreen):
 				u"<font=4>" + localText.getText("TXT_KEY_MAIN_MENU_GO_BACK", ()).upper() + "</font>",
 				CvUtil.FONT_RIGHT_JUSTIFY, xGoBackButton, self.yExitButton, 0,
 				FontTypes.TITLE_FONT, WidgetTypes.WIDGET_CLOSE_SCREEN,
-				self.iScreenID, 1) # One TAB press, then Enter.
+				# 2 for Go Back through simulated mouse-click.
+				# (1 would do it through TAB+Return key; can't get this to work reliably.)
+				self.iScreenID, 2)
 		screen.setActivation(GOBACK_ID, ActivationTypes.ACTIVATE_NORMAL)
 		footerButtonDist = 300 # Distance in between footer buttons that are grouped together
 		CLOSE_ID = "CloseButton"

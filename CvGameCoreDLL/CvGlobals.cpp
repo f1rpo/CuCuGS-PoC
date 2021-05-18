@@ -535,6 +535,25 @@ void CvGlobals::simulateKeyPressed(byte ucVK)
 	//Sleep(10);
 	//keybd_event(ucVK, 0, KEYEVENTF_KEYUP, 0);
 	// --which doesn't require _WIN32_WINNT to be defined.
+}
+
+void CvGlobals::simulateMouseClicked()
+{
+	for (int i = 0; i < 2; i++)
+	{
+		INPUT inputs[1];
+		ZeroMemory(inputs, sizeof(inputs));
+		inputs[0].type = INPUT_MOUSE;
+		if (i == 0)
+			inputs[0].mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
+		else
+		{
+			Sleep(5);
+			inputs[0].mi.dwFlags = MOUSEEVENTF_LEFTUP;
+		} 
+		uint uSent = SendInput(ARRAYSIZE(inputs), inputs, sizeof(inputs[0]));
+		FAssert(uSent == ARRAYSIZE(inputs));
+	}
 } // </ccgs>
 
 CvRandom& CvGlobals::getASyncRand()

@@ -24,7 +24,8 @@ class GenericDecoratedScreen( object ) :
 			screen.setDimensions( 0, 0, self.wScreen, self.hScreen )
 
 		self.xExitButton = self.wScreen - 30
-		self.yExitButton = self.hScreen - 42
+		# ccgs: Was -42. Want it to be closer to the center of the footer.
+		self.yExitButton = self.hScreen - 37
 		
 		return self.wScreen, self.hScreen # For convenience
 	
