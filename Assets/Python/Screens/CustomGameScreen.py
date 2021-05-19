@@ -12,7 +12,6 @@ localText = CyTranslator()
 
 
 class CustomGameScreen(GenericDecoratedScreen.GenericDecoratedScreen):
-	"Exotic Foreign Advisor Screen"
 
 	def __init__(self):
 		GenericDecoratedScreen.GenericDecoratedScreen.__init__(self)
