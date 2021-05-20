@@ -85,15 +85,16 @@ class CustomGameScreen(GenericDecoratedScreen.GenericDecoratedScreen):
 
 	def handleInput(self, inputClass):
 		if inputClass.getNotifyCode() == NotifyCode.NOTIFY_LISTBOX_ITEM_SELECTED:
-			screen = self.getScreen()
-			iIndex = screen.getSelectedPullDownID(self.GAMESPEED_DROPDOWN_ID)
-			iGameSpeed = screen.getPullDownData(self.GAMESPEED_DROPDOWN_ID, iIndex)
-			gc.getInitCore().setGameSpeed(iGameSpeed)
+			if inputClass.getFunctionName() == self.GAMESPEED_DROPDOWN_ID:
+				screen = self.getScreen()
+				iIndex = screen.getSelectedPullDownID(self.GAMESPEED_DROPDOWN_ID)
+				iGameSpeed = screen.getPullDownData(self.GAMESPEED_DROPDOWN_ID, iIndex)
+				gc.getInitCore().setGameSpeed(iGameSpeed)
+		if inputClass.getNotifyCode() == NotifyCode.NOTIFY_CLICKED:
+			if inputClass.getButtonType() == WidgetTypes.WIDGET_CLOSE_SCREEN:
+				# In the unlikely case that the player has TAB'ed onto the original Custom Game screen. We want the new screen to have focus when it closes so that the original Launch button receives focus (by default, apparently). This doesn't work reliably, but it's better than failing everytime.
+				self.getScreen().setFocus("TestPanel")
 		return 1 # Consume all inputs
 
-	# Could perhaps also handle the simulated key presses here. Would have to remember in which way the screen was closed, and CvGlobals::simulateKeyPressed would have to be exposed to Python for specific keys. (Because figuring out the Windows key codes in Python would require some contortions I think. We might then as well try to trigger the key presses directly from Python via the ctypes module.)
-	'''
-	def onClose(self):
-		gc.simulateTabKeyPressed()
-		gc.simulateReturnKeyPressed()
-	'''
+	#def onClose(self):
+	# Could perhaps also handle the emulated key presses here. Would have to remember in which way the screen was closed, and the InputSim functions would have to be exposed to Python for specific keys. (Because figuring out the Windows key codes in Python would require some contortions I think. We might then as well try to trigger the key presses directly from Python via the ctypes module.)
