@@ -574,7 +574,10 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 	case WIDGET_COMMERCE_MOD_HELP:
 		parseCommerceModHelp(widgetDataStruct, szBuffer);
 		break;
-
+	// <ccgs>
+	case WIDGET_HELP_GAME_SPEED:
+		parseGameSpeedHelp(widgetDataStruct, szBuffer);
+		break; // </ccgs>
 	}
 }
 
@@ -846,7 +849,6 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 		// Check for ID of CustomGameScreen.py
 		if (widgetDataStruct.m_iData1 == 33)
 		{
-			
 			switch(widgetDataStruct.m_iData2)
 			{
 			case 0: input_sim::keyPressed(VK_RETURN); break;
@@ -856,10 +858,10 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 				aucKeySeq.push_back(VK_TAB);
 				aucKeySeq.push_back(VK_RETURN);
 				input_sim::keySequence(aucKeySeq);
+				break;
 			}
 			case 2: input_sim::mouseClicked(); break;
 			}
-			
 		}
 		break;
 	} // </ccgs>
@@ -4533,3 +4535,8 @@ void CvDLLWidgetData::parseScoreHelp(CvWidgetDataStruct& widgetDataStruct, CvWSt
 	GAMETEXT.setScoreHelp(szBuffer, (PlayerTypes)widgetDataStruct.m_iData1);
 }
 
+// ccgs:
+void CvDLLWidgetData::parseGameSpeedHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	GAMETEXT.setGameSpeedHelp(szBuffer, (GameSpeedTypes)widgetDataStruct.m_iData1, widgetDataStruct.m_iData2 == 1);
+}

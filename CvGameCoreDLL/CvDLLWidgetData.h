@@ -199,6 +199,7 @@ public:
 	void parseLeaderheadHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer);
 	void parseLeaderLineHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer);
 	void parseCommerceModHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer);
+	void parseGameSpeedHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer); // ccgs
 
 protected:
 	

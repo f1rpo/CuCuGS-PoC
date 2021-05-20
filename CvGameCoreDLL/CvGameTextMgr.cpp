@@ -13704,6 +13704,29 @@ void CvGameTextMgr::setEspionageCostHelp(CvWStringBuffer &szBuffer, EspionageMis
 	}
 }
 
+// ccgs:
+void CvGameTextMgr::setGameSpeedHelp(CvWStringBuffer &szBuffer, GameSpeedTypes eGameSpeed, bool bReverse)
+{
+	if (eGameSpeed != NO_GAMESPEED)
+	{	// (unused so far)
+		szBuffer.append(GC.getGameSpeedInfo(eGameSpeed).getHelp());
+		return;
+	}
+	bool bFirst = true;
+	for (int i = bReverse ? GC.getNumGameSpeedInfos() - 1 : 0;
+		bReverse ? (i >= 0) : (i < GC.getNumGameSpeedInfos()); bReverse ? (i--) : (i++))
+	{
+		CvGameSpeedInfo const& kGameSpeed = GC.getGameSpeedInfo((GameSpeedTypes)i);
+		CvWString szTempBuffer;
+		szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR("COLOR_HIGHLIGHT_TEXT"),
+				kGameSpeed.getDescription());
+		szTempBuffer.append(L" - ");
+		szTempBuffer.append(kGameSpeed.getHelp());
+		setListHelp(szBuffer, L"", szTempBuffer, NEWLINE, bFirst);
+		bFirst = false;
+	}
+}
+
 void CvGameTextMgr::getTradeScreenTitleIcon(CvString& szButton, CvWidgetDataStruct& widgetData, PlayerTypes ePlayer)
 {
 	szButton.clear();
