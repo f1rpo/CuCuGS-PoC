@@ -3,18 +3,18 @@
 
 // ccgs
 
-void input_sim::simulateKeySequence(std::vector<byte> aucVK, bool bContinueSeq)
+void input_sim::keySequence(std::vector<byte> aucVK, bool bContinueSeq)
 {
 	for (size_t i = 0; i < aucVK.size(); i++)
 	{
 		if (i != 0 || bContinueSeq)
 			Sleep(10);
-		simulateKeyPressed(aucVK[i]);
+		keyPressed(aucVK[i]);
 	}
 }
 
 
-void input_sim::simulateKeyPressed(byte ucVK)
+void input_sim::keyPressed(byte ucVK)
 {
 	for (int i = 0; i < 2; i++)
 	{
@@ -45,7 +45,7 @@ void input_sim::simulateKeyPressed(byte ucVK)
 }
 
 
-void input_sim::simulateMouseClicked()
+void input_sim::mouseClicked()
 {
 	for (int i = 0; i < 2; i++)
 	{

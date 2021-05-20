@@ -849,15 +849,15 @@ bool CvDLLWidgetData::executeAction( CvWidgetDataStruct &widgetDataStruct )
 			
 			switch(widgetDataStruct.m_iData2)
 			{
-			case 0: input_sim::simulateKeyPressed(VK_RETURN); break;
+			case 0: input_sim::keyPressed(VK_RETURN); break;
 			case 1:
 			{
 				std::vector<byte> aucKeySeq;
 				aucKeySeq.push_back(VK_TAB);
 				aucKeySeq.push_back(VK_RETURN);
-				input_sim::simulateKeySequence(aucKeySeq);
+				input_sim::keySequence(aucKeySeq);
 			}
-			case 2: input_sim::simulateMouseClicked(); break;
+			case 2: input_sim::mouseClicked(); break;
 			}
 			
 		}
