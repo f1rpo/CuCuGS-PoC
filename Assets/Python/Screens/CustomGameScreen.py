@@ -45,6 +45,8 @@ class CustomGameScreen(GenericDecoratedScreen.GenericDecoratedScreen):
 				CvUtil.FONT_RIGHT_JUSTIFY, self.xExitButton, self.yExitButton, 0,
 				FontTypes.TITLE_FONT, WidgetTypes.WIDGET_CLOSE_SCREEN,
 				self.iScreenID, 0) # 0 for Launch through Return key
+		# This should be the right style (defined in Civ4Theme_Custom.thm), but it really isn't? The original screen (and opening menu) seem to use the arrow_ani_l_...tga arrows, but I don't see any style that uses those.
+		#screen.setStyle(self.EXIT_ID, "SF_CtrlTheme_Civ4_Control_Button_Main_ArrowR_Style")
 		screen.setActivation(self.EXIT_ID, ActivationTypes.ACTIVATE_NORMAL)
 		GOBACK_ID = "GoBackButton"
 		xGoBackButton = 130
@@ -55,6 +57,7 @@ class CustomGameScreen(GenericDecoratedScreen.GenericDecoratedScreen):
 				# 2 for Go Back through simulated mouse-click.
 				# (1 would do it through TAB+Return key; can't get this to work reliably.)
 				self.iScreenID, 2)
+		#screen.setStyle(GOBACK_ID, "SF_CtrlTheme_Civ4_Control_Button_Main_ArrowL_Style")
 		screen.setActivation(GOBACK_ID, ActivationTypes.ACTIVATE_NORMAL)
 		footerButtonDist = 300 # Distance in between footer buttons that are grouped together
 		CLOSE_ID = "CloseButton"
