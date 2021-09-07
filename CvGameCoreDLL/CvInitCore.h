@@ -346,9 +346,10 @@ protected:
 	unsigned int m_uiMapRandSeed;
 	PlayerTypes m_eActivePlayer;
 	GameMode m_eMode;
-	/*	ccgs: (Caveat: Changing the memory layout of this class above this line
+	/*	<ccgs> (Caveat: Changing the memory layout of this class above this line
 		can lead to memory corruptions) */
 	bool m_bOnCustomGameScreen;
+	bool m_bOnStagingRoomScreen; // </ccgs>
 
 	// Temp var so we don't return locally scoped var
 	mutable CvWString m_szTemp;

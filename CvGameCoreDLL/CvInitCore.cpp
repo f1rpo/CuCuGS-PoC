@@ -121,7 +121,7 @@ void CvInitCore::reset(GameMode eMode)
 	{
 		setDefaults();
 	}
-	m_bOnCustomGameScreen = false; // ccgs
+	m_bOnCustomGameScreen = m_bOnStagingRoomScreen = false; // ccgs
 }
 
 void CvInitCore::setDefaults()
@@ -1045,14 +1045,23 @@ void CvInitCore::setCustomMapOption(int iOptionID, CustomMapOptionTypes eCustomM
 void CvInitCore::setVictories(int iNumVictories, const bool* abVictories)
 {
 	/*	Forward to a new function to prevent DLL-internal calls
-		from disrupting my Custom Game vs. Play Now detection. */
+		from disrupting my Staging Room/ Custom Game vs. Play Now detection. */
 	setVictoriesInternal(iNumVictories, abVictories);
-	if (iNumVictories > 0 && getType() == GAME_SP_NEW)
+	if (iNumVictories > 0)
 	{
-		/*	The Custom Game screen calls setVictories before and after setActivePlayer,
-			the Play Now screen (leader selection) calls setVictories once:
-			after setActivePlayer. */
-		m_bOnCustomGameScreen = !m_bOnCustomGameScreen;
+		if (getType() == GAME_SP_NEW)
+		{
+			/*	The Custom Game screen calls setVictories before and after
+				setActivePlayer, the Play Now screen (leader selection) calls
+				setVictories once: after setActivePlayer. */
+			m_bOnCustomGameScreen = !m_bOnCustomGameScreen;
+		}
+		if (getType() == GAME_MP_NEW)
+		{
+			m_bOnStagingRoomScreen = true;
+			for (int i = 0; i < MAX_CIV_PLAYERS; i++)
+				setReady((PlayerTypes)i, true);
+		}
 	}
 }
 
@@ -1172,12 +1181,20 @@ void CvInitCore::setActivePlayer(PlayerTypes eActivePlayer)
 		// Automatically claim this slot
 		setSlotClaim(m_eActivePlayer, SLOTCLAIM_ASSIGNED);
 		// <ccgs>
+		bool bSuccess = true;
 		if (getType() == GAME_SP_NEW && m_bOnCustomGameScreen)
 		{
-			bool bSuccess = gDLL->getPythonIFace()->callFunction(
+			bSuccess = gDLL->getPythonIFace()->callFunction(
 					PYScreensModule, "showCustomGameScreen");
-			FAssert(bSuccess);
-		} // </ccgs>
+		}
+		if (getType() == GAME_MP_NEW && m_bOnStagingRoomScreen)
+		{
+			// Tbd.: Tell Python that this is a MP game - or expose getType.
+			bSuccess = gDLL->getPythonIFace()->callFunction(
+					PYScreensModule, "showCustomGameScreen");
+		}
+		FAssert(bSuccess);
+		// </ccgs>
 	}
 }
 
