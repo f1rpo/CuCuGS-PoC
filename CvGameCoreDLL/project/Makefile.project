@@ -1,11 +1,10 @@
 SOURCE_DIR = ..
-PROJECT_CFLAGS = /WX
+PROJECT_CFLAGS = /W3 /WX
 # Allow inline expansion of functions with an inline keyword even for debug builds
 PROJECT_Debug_CFLAGS = /Ob1
 # For debugging memory errors that don't occur in debug builds
 #PROJECT_DebugOpt_CFLAGS = /DFASSERT_ENABLE /Oy-
 # May want to enable global optimization when inspecting optimized disassembly (and also for profile builds). Slow to compile though.
-# it's just slow to compile.
 #PROJECT_DebugOpt_CFLAGS = /GL
 # DLL-internal profiler: /DUSE_INTERNAL_PROFILER
 # External profiler, e.g. Very Sleepy: No profile flags needed; profile builds always use Z7.
